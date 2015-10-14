@@ -8,6 +8,7 @@ package FlowPusher;
 
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
+import java.util.ArrayList;
 import java.util.Hashtable;
 import java.util.Iterator;
 import java.util.List;
@@ -31,18 +32,25 @@ public class FlowCreator {
          flow.ingress_port=String.valueOf(matchings.get("ingress_port"));
          
          if(matchings.get("dst_mac") != null)
-            flow.destMAC=String.valueOf(matchings.get("dst_mac"));
+            flow.dst_mac=String.valueOf(matchings.get("dst_mac"));
          
          flow.active="true"; 
          
+        
+        List keys=new ArrayList();
+        keys.addAll(actions.keySet());
+              
         String actionSet="";
-        Set keys=actions.keySet();
+        String action="";
         
         for (int i = 0; i < actions.size(); i++) {
+            action= keys.get(i)+"="+String.valueOf(actions.get(keys.get(i)));
+            
             if(i<actions.size()-1)
-                actionSet = keys.remove(0)+"="+String.valueOf(actions.get(i))+",";
+                actionSet += action+",";
             else
-                actionSet = keys.remove(0)+"="+String.valueOf(actions.get(i));
+                actionSet += action;
+            
         }
        
         flow.actions=actionSet;
@@ -56,6 +64,7 @@ public class FlowCreator {
         json=json.replace("Switch", "switch");
         json=json.replace("ingress_port", "ingress-port");
         json=json.replace("dst_mac", "dst-mac");
+        json=json.replace("flow_name", "name");
 
         System.out.println(json);
 

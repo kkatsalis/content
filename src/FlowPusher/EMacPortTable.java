@@ -11,21 +11,22 @@ package FlowPusher;
  */
 
     public enum EMacPortTable {
-    Node083("00:03:1d:0d:bc:87", 19),
-    Node084("00:03:1d:0d:bc:8d",21),  
-    SwitchA("02:b4:f0:92:1c:21:b9:00", 562),
-    SwitchB("02:b4:64:51:06:b4:35:00",562);
-    
+        
+        Node083("00:03:1d:0d:bc:87", 19),
+        Node084("00:03:1d:0d:bc:8d",21),  
+        SwitchA("02:b4:f0:92:1c:21:b9:00", 562),
+        SwitchB("02:b4:64:51:06:b4:35:00",562);
 
-    private final int port;
-    private final String mac;
 
-    private EMacPortTable(String host_mac,int switch_port) {
-        this.port = switch_port;
-        this.mac = host_mac;
-    }
-    
-    public String getMacAddress(){return mac;}
-    public int getPort(){return port;}
+        private final int port;
+        private final String mac;
+
+        private EMacPortTable(String host_mac,int switch_port) {
+            this.port = switch_port;
+            this.mac = host_mac;
+        }
+
+        public String getMacAddress(){return mac;}
+        public int getPort(){return port;}
 }
 

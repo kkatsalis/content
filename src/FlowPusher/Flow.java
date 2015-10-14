@@ -20,7 +20,7 @@ public class Flow {
     
     public String destIP;
     public String sourceMAC;
-    public String destMAC;
+    public String dst_mac;
     public String ingress_port;
     public String active; 
     public String actions;
