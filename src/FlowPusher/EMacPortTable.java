@@ -12,8 +12,11 @@ package FlowPusher;
 
     public enum EMacPortTable {
         
+        Node080("00:03:1d:0d:bc:a9", 15),
+        Node082("00:03:1d:0d:bc:b3", 17),
         Node083("00:03:1d:0d:bc:87", 19),
         Node084("00:03:1d:0d:bc:8d",21),  
+        
         SwitchA("02:b4:f0:92:1c:21:b9:00", 562),
         SwitchB("02:b4:64:51:06:b4:35:00",562);
 

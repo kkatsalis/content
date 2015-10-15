@@ -23,19 +23,20 @@ public class ContentSDNClients {
 
            
             String controllerIP="10.64.45.8";
-            int portA=19;
-            int portB=562;
+            int portA=15;
+            int portB=100;
             String vlan="692";
             int vlan_priority=0;
             
-        //  addConnection(portA,portB,vlan,vlan_priority);
-           deleteConnection(portA,portB,vlan);
+           if(false)
+                addConnection(controllerIP,portA,portB,vlan,vlan_priority);
+           if(true)
+                deleteConnection(controllerIP,portA,portB,vlan);
           
         }
         
-        private static int deleteConnection(int portA,int portB,String vlan){
+        private static int deleteConnection(String controllerIP,int portA,int portB,String vlan){
         
-            String controllerIP="10.64.45.8";
             ApacheHttpClient floodlightClient=new ApacheHttpClient(controllerIP);
             String flowName;
             
@@ -44,6 +45,12 @@ public class ContentSDNClients {
                 flowName=portA+"_"+portB+"_"+"uplink";
                 floodlightClient.deleteFloodlightClient(flowName); 
                 
+                flowName=portB+"_"+portA+"_"+"uplink";
+                floodlightClient.deleteFloodlightClient(flowName); 
+                
+                flowName=portB+"_"+portA+"_"+"downlink";
+                floodlightClient.deleteFloodlightClient(flowName); 
+            
                 flowName=portA+"_"+portB+"_"+"downlink";
                 floodlightClient.deleteFloodlightClient(flowName); 
             
@@ -56,10 +63,8 @@ public class ContentSDNClients {
         }
             
     
-    private static int addConnection(int portA,int portB,String vlan,int vlan_priority){
+    private static int addConnection(String controllerIP,int portA,int portB,String vlan,int vlan_priority){
          
-        String controllerIP="10.64.45.8";
-
         Boolean externalTraffic=false;
                       
         int trunk_port=EMacPortTable.SwitchB.getPort();
